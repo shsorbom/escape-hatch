@@ -1,0 +1,33 @@
+version: "3.9"
+
+networks:
+  frontend:
+  backend:
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d:ro
+      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/html:/var/www/html:ro
+    networks:
+      - frontend
+      - backend
+
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: fail2ban
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./fail2ban:/data
+      - /var/log:/var/log:ro

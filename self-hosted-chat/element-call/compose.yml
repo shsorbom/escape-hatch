@@ -1,0 +1,9 @@
+services:
+  element-call:
+    image: vectorim/element-call:latest
+    container_name: element-call
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    networks:
+      - backend

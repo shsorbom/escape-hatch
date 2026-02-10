@@ -1,0 +1,9 @@
+services:
+  website:
+    image: nginx:alpine
+    container_name: website
+    restart: unless-stopped
+    volumes:
+      - ./website/dist:/usr/share/nginx/html:ro
+    networks:
+      - backend

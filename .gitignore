@@ -1,0 +1,19 @@
+.env
+
+# Synapse
+synapse/data/
+synapse/db/
+
+# Mumble
+mumble/data/
+
+# Botamusique
+botamusique/config/
+botamusique/music/
+
+# nginx certs
+nginx/certs/
+
+# Website build output
+website/dist/
+

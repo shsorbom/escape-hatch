@@ -1,0 +1,9 @@
+services:
+  element-web:
+    image: vectorim/element-web:latest
+    container_name: element-web
+    restart: unless-stopped
+    volumes:
+      - ./element/config.json:/app/config.json:ro
+    networks:
+      - backend

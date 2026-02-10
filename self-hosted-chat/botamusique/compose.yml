@@ -1,0 +1,15 @@
+services:
+  botamusique:
+    image: ghcr.io/botamusique/botamusique:${BOTAMUSIQUE_VERSION}
+    container_name: botamusique
+    restart: unless-stopped
+    environment:
+      - BOTAMUSIQUE_WEB_PASSWORD=${BOTAMUSIQUE_WEB_PASSWORD}
+      - TZ=${TZ}
+    volumes:
+      - ./botamusique/config:/config
+      - ./botamusique/music:/music
+    networks:
+      - backend
+    depends_on:
+      - mumble
