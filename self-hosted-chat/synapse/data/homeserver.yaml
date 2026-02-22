@@ -1,0 +1,91 @@
+server_name: "matrix.example.org"
+pid_file: /data/homeserver.pid
+
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    resources:
+      - names: [client, federation]
+        compress: true
+
+database:
+  name: psycopg2
+  args:
+    user: synapse
+    password: ${POSTGRES_PASSWORD}
+    database: synapse
+    host: postgres
+    port: 5432
+    cp_min: 5
+    cp_max: 10
+
+log_config: "/data/log.config"
+media_store_path: "/data/media_store"
+
+registration_shared_secret: "GENERATE_A_LONG_RANDOM_SECRET"
+
+report_stats: false
+
+macaroon_secret_key: "GENERATE_ANOTHER_LONG_SECRET"
+form_secret: "GENERATE_ANOTHER_LONG_SECRET"
+
+signing_key_path: "/data/matrix.example.org.signing.key"
+
+# 🔒 CLOSED REGISTRATION
+enable_registration: true
+registration_requires_token: true
+enable_registration_without_verification: false
+allow_guest_access: false
+
+# 🔐 NO FEDERATION
+federation_domain_whitelist: []
+allow_public_rooms_over_federation: false
+federation_sender_instances: []
+enable_federation: false
+
+# 🚫 No public room directory
+allow_public_rooms_without_auth: false
+allow_public_rooms_over_federation: false
+
+# 🧠 Encryption behavior
+# We do NOT advertise cross-signing or E2EE defaults
+default_room_version: "10"
+
+# 🧑‍⚖️ Admin settings
+admin_contact: "mailto:admin@example.org"
+
+# 📦 Media limits
+max_upload_size: 20M
+max_image_pixels: 32M
+
+# 🧱 Rate limiting
+rc_login:
+  per_second: 0.17
+  burst_count: 3
+
+rc_registration:
+  per_second: 0.17
+  burst_count: 3
+
+rc_message:
+  per_second: 5
+  burst_count: 10
+
+# 🧾 Logging
+log_level: INFO
+
+# 🧹 Disable URL previews (privacy + attack surface reduction)
+url_preview_enabled: false
+
+# 🗂️ Disable room directory publishing
+enable_room_list_search: false
+
+# 📦 Custom module directory
+python_module_directory: "/modules"
+
+# 🚫 Block encrypted rooms (including auto-encrypted DMs)
+modules:
+  - module: block_encryption.BlockEncryptionModule
+    config: {}

@@ -9,6 +9,8 @@ services:
       - TZ=${TZ}
     volumes:
       - ./synapse/data:/data
+      - ./synapse/modules:/modules
+
     networks:
       - backend
     depends_on:
