@@ -1,8 +1,8 @@
 {
   "default_server_config": {
     "m.homeserver": {
-      "base_url": "https://matrix.example.org",
-      "server_name": "matrix.example.org"
+      "base_url": "https://matrix.example.com",
+      "server_name": "example.com"
     },
     "m.identity_server": {
       "base_url": ""
@@ -22,7 +22,7 @@
     "feature_cross_signing": false,
     "feature_secure_backup": false,
     "feature_group_calls": false,
-    "feature_video_rooms": false
+    "feature_video_rooms": true
   },
 
   "room_directory": {
@@ -30,7 +30,7 @@
   },
 
   "enable_presence_by_hs_url": {
-    "https://matrix.example.org": false
+    "https://matrix.example.com": false
   },
 
   "default_federate": false,
@@ -43,7 +43,7 @@
 
   "enable_identity_server": false,
 
-  "default_theme": "light",
+  "default_theme": "dark",
 
   "default_device_display_name": "Escape Hatch Device",
 

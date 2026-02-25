@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     environment:
       - MUMBLE_SUPERUSER_PASSWORD=${MUMBLE_PASSWORD}
+      - MUMBLE_SERVER_PASSWORD=${FRIEND_CODE}
+      - MUMBLE_CONFIG_FILE=/data/mumble-server.ini
       - TZ=${TZ}
     ports:
       - "64738:64738/tcp"

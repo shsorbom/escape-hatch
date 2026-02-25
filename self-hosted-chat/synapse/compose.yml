@@ -7,6 +7,11 @@ services:
       - SYNAPSE_SERVER_NAME=${MATRIX_SERVER_NAME}
       - SYNAPSE_REPORT_STATS=no
       - TZ=${TZ}
+       # 🔐 Inject secrets into container
+      - SYNAPSE_REGISTRATION_SHARED_SECRET=${SYNAPSE_REGISTRATION_SHARED_SECRET}
+      - SYNAPSE_MACAROON_SECRET_KEY=${SYNAPSE_MACAROON_SECRET_KEY}
+      - SYNAPSE_FORM_SECRET=${SYNAPSE_FORM_SECRET}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - ./synapse/data:/data
       - ./synapse/modules:/modules

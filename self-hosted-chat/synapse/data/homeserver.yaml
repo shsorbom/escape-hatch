@@ -1,4 +1,4 @@
-server_name: "matrix.example.org"
+server_name: "example.com"
 pid_file: /data/homeserver.pid
 
 listeners:
@@ -7,7 +7,7 @@ listeners:
     type: http
     x_forwarded: true
     resources:
-      - names: [client, federation]
+      - names: [client]
         compress: true
 
 database:
@@ -16,7 +16,7 @@ database:
     user: synapse
     password: ${POSTGRES_PASSWORD}
     database: synapse
-    host: postgres
+    host: synapse-db
     port: 5432
     cp_min: 5
     cp_max: 10
@@ -24,14 +24,15 @@ database:
 log_config: "/data/log.config"
 media_store_path: "/data/media_store"
 
-registration_shared_secret: "GENERATE_A_LONG_RANDOM_SECRET"
+# Secrets are passed in from .env
+registration_shared_secret: ${SYNAPSE_REGISTRATION_SHARED_SECRET}
+macaroon_secret_key: ${SYNAPSE_MACAROON_SECRET_KEY}
+form_secret: ${SYNAPSE_FORM_SECRET}
 
 report_stats: false
 
-macaroon_secret_key: "GENERATE_ANOTHER_LONG_SECRET"
-form_secret: "GENERATE_ANOTHER_LONG_SECRET"
 
-signing_key_path: "/data/matrix.example.org.signing.key"
+signing_key_path: "/data/example.com.signing.key"
 
 # 🔒 CLOSED REGISTRATION
 enable_registration: true
@@ -54,7 +55,7 @@ allow_public_rooms_over_federation: false
 default_room_version: "10"
 
 # 🧑‍⚖️ Admin settings
-admin_contact: "mailto:admin@example.org"
+admin_contact: "mailto:admin@example.com"
 
 # 📦 Media limits
 max_upload_size: 20M
@@ -87,5 +88,5 @@ python_module_directory: "/modules"
 
 # 🚫 Block encrypted rooms (including auto-encrypted DMs)
 modules:
-  - module: block_encryption.BlockEncryptionModule
+  - module: modules.no_e2ee.EnforceNoE2EE
     config: {}
