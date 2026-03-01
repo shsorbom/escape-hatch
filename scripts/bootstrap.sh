@@ -130,7 +130,7 @@ TURN_SHARED_SECRET=$TURN_SHARED_SECRET
 MUMBLE_PASSWORD=$MUMBLE_PASSWORD
 
 # === BOTAMUSIQUE ===
-BOTAMUSIQUE_VERSION=0.9.2
+BOTAMUSIQUE_VERSION=latest
 BOTAMUSIQUE_WEB_PASSWORD=$BOTAMUSIQUE_WEB_PASSWORD
 EOF
 
@@ -196,15 +196,28 @@ mkdir -p "$BOTAMUSIQUE_CONFIG_DIR"
 
 cat > "$BOTAMUSIQUE_CONFIG_DIR/config.ini" <<EOF
 [bot]
-server = mumble
-port = 64738
-username = MusicBot
-password =
-channel =
-web_password = $BOTAMUSIQUE_WEB_PASSWORD
+name = Botamusique
+comment = Music bot
+channel = Root
+autoconnect = true
+version = 0.0.0 # NOTE: This does not appear in the official config, but it fixes the updater
 
-[connection]
-reconnect = true
+[server]
+host = mumble
+port = 64738
+username = Botamusique
+password = $FRIEND_CODE
+
+[webinterface]
+enabled = true
+host = 0.0.0.0
+port = 8181
+
+[media]
+volume = 0.25
+
+[update]
+enabled = false
 EOF
 
 # --------------------------------------------------

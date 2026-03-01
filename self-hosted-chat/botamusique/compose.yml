@@ -4,6 +4,7 @@ services:
     container_name: botamusique
     restart: unless-stopped
     environment:
+      - BOTAMUSIQUE_DISABLE_UPDATE=1
       - BOTAMUSIQUE_WEB_PASSWORD=${BOTAMUSIQUE_WEB_PASSWORD}
       - TZ=${TZ}
     volumes:
