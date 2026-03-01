@@ -7,7 +7,7 @@ echo "========================================="
 echo
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$PROJECT_ROOT"
+cd "$PROJECT_ROOT/self-hosted-chat"
 
 ENV_FILE=".env"
 ENV_EXAMPLE=".env.example"

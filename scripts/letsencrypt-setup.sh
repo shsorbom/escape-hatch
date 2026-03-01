@@ -8,7 +8,7 @@ fi
 
 DOMAIN="${MATRIX_SERVER_NAME}"
 EMAIL="admin@${DOMAIN}"
-NGINX_CONF_DIR="./nginx/conf/conf.d"
+NGINX_CONF_DIR="/etc/nginx/conf/conf.d"
 PROXY_CONTAINER="nginx"
 
 echo "======================================="

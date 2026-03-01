@@ -16,7 +16,7 @@ OLD_DOMAIN="$1"
 NEW_DOMAIN="$2"
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$PROJECT_ROOT"
+cd "$PROJECT_ROOT/self-hosted-chat"
 
 echo "Old domain: $OLD_DOMAIN"
 echo "New domain: $NEW_DOMAIN"
