@@ -1,6 +1,6 @@
 services:
   element-call:
-    image: vectorim/element-call:latest
+    image: ghcr.io/element-hq/element-call:latest
     container_name: element-call
     restart: unless-stopped
     environment:
