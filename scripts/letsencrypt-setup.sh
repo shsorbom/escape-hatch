@@ -1,15 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+PROJECT_PATH=./self-hosted-chat # Assuming we are running from the root of the git project directory
+cd $PROJECT_PATH
 # Load environment
 if [ -f .env ]; then
     export $(grep -v '^#' .env | xargs)
+    else
+      echo "Critical failure: no env file found at "
+      echo $(pwd)
+      exit 1
 fi
+
 
 DOMAIN="${MATRIX_SERVER_NAME}"
 EMAIL="admin@${DOMAIN}"
-NGINX_CONF_DIR="/etc/nginx/conf/conf.d"
+NGINX_CONF_DIR="nginx/conf/conf.d"
 PROXY_CONTAINER="nginx"
+WEBROOT="/var/www/letsencrypt"
+
+echo "Debug: Domain: " $DOMAIN
+echo "Debug: email:" $EMAIL
+echo "Debug: Nginx conf: " $NGINX_CONF_DIR
 
 echo "======================================="
 echo "Escape Hatch - Auto Subdomain Discovery"
