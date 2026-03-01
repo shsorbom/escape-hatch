@@ -1,6 +1,6 @@
 services:
   synapse:
-    image: matrixdotorg/synapse:1.110.0
+    image: matrixdotorg/synapse:latest
     container_name: synapse
     restart: unless-stopped
     environment:
