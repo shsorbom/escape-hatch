@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOMAIN="example.com"
-EMAIL="admin@example.com"
-WEBROOT="/var/www/letsencrypt"
-NGINX_CONF_DIR="./nginx/conf.d"
+# Load environment
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+
+DOMAIN="${MATRIX_SERVER_NAME}"
+EMAIL="admin@${DOMAIN}"
+NGINX_CONF_DIR="./nginx/conf/conf.d"
 PROXY_CONTAINER="nginx"
 
 echo "======================================="
