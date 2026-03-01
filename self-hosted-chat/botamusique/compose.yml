@@ -1,6 +1,6 @@
 services:
   botamusique:
-    image: ghcr.io/botamusique/botamusique:${BOTAMUSIQUE_VERSION}
+    image: azlux/botamusique:${BOTAMUSIQUE_VERSION}
     container_name: botamusique
     restart: unless-stopped
     environment:
