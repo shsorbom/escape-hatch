@@ -21,6 +21,7 @@ COMPOSE_FILES=(
   -f botamusique/compose.yml
   -f website/compose.yml
   -f coturn/compose.yml
+  -f certbot/compose.yml
 )
 
 # Ensure Docker is running

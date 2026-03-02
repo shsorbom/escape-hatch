@@ -16,6 +16,8 @@ services:
       - ./nginx/conf:/etc/nginx:ro
       - ./nginx/certs:/etc/nginx/certs
       - ./nginx/html:/var/www/html:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/letsencrypt:/var/www/letsencrypt:ro
     networks:
       - frontend
       - backend
